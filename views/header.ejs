@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EJS Is Fun</title>
+    <!-- CSS (load bootstrap from a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="container">
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            let isValid = true;
+
+            // Username Validation
+            const username = document.getElementById('username').value;
+            const usernameError = document.getElementById('usernameError');
+            if (username.length < 4) {
+                usernameError.textContent = 'Username must be at least 4 characters long.';
+                isValid = false;
+            } else {
+                usernameError.textContent = '';
+            }
+
+            // Password Validation
+            const password = document.getElementById('password').value;
+            const passwordError = document.getElementById('passwordError');
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                passwordError.textContent = 'Password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, a digit, and a special character.';
+                isValid = false;
+            } else {
+                passwordError.textContent = '';
+            }
+
+            if (!isValid) {
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>
+
+<header>
+    <h2>Sign Up / Login Example</h2>
+</header>
